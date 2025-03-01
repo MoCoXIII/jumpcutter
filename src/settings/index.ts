@@ -26,6 +26,7 @@ import { ControllerKind } from './ControllerKind';
 type SettingsControllerKind = Exclude<ControllerKind, ControllerKind.ALWAYS_SOUNDED>;
 
 export interface Settings {
+  timeSaved: number,
   volumeThreshold: number,
   previousVolumeThreshold: number,
 
@@ -144,7 +145,7 @@ export interface Settings {
   timeSavedExponentialAveragingLatestDataWeight: number,
 
   // TODO should we add other options for this setting?
-  badgeWhatSettingToDisplayByDefault: 'none' | 'soundedSpeed' | 'silenceSpeedRaw' | 'volumeThreshold',
+  badgeWhatSettingToDisplayByDefault: 'none' | 'soundedSpeed' | 'silenceSpeedRaw' | 'volumeThreshold' | 'timeSaved',
 
   enableDesyncCorrection: boolean,
 

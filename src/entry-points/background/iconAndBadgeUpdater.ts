@@ -26,7 +26,7 @@ function setBadge(text: string, color: string) {
   browserOrChrome.action.setBadgeText({ text });
 }
 type SupportedSettings = keyof Pick<Settings, 'soundedSpeed' | 'silenceSpeedRaw' | 'volumeThreshold' | 'marginBefore'
-  | 'marginAfter'>;
+  | 'marginAfter' | 'timeSaved'>;
 function settingToBadgeParams<T extends SupportedSettings>(
   settingName: T,
   value: Settings[T]
@@ -42,6 +42,7 @@ function settingToBadgeParams<T extends SupportedSettings>(
     // TODO improvement: any better ideas for background colors for these two?
     case 'marginBefore': return [value.toFixed(3), '#333'];
     case 'marginAfter': return [value.toFixed(3), '#333'];
+    case 'timeSaved': return [value.toFixed(2), '#0d0'];
     // default: assertNever(settingName); Does not work because of the generic type. TODO
     default: throw new Error();
   }
@@ -103,7 +104,7 @@ export function updateIconAndBadge(
 
   // TODO improvement: also display `video.volume` changes? Perhaps this script belongs to `content/main.ts`?
   const orderedSetingsNames =
-    ['soundedSpeed', 'silenceSpeedRaw', 'volumeThreshold', 'marginBefore', 'marginAfter'] as const;
+    ['soundedSpeed', 'silenceSpeedRaw', 'volumeThreshold', 'marginBefore', 'marginAfter', 'timeSaved'] as const;
   for (const settingName of orderedSetingsNames) {
     const currSettingChange = changes[settingName];
     if (currSettingChange) {

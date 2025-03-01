@@ -132,6 +132,7 @@ along with Jump Cutter Browser Extension.  If not, see <https://www.gnu.org/lice
     { v: 'soundedSpeed', l: `🗣️▶️ ${getMessage('soundedSpeed')}`, },
     { v: 'silenceSpeedRaw', l: `🙊⏩ ${getMessage('silenceSpeed')}`, },
     { v: 'volumeThreshold', l: `🔉🎚️ ${getMessage('volumeThreshold')}`, },
+    { v: 'timeSaved', l: `⏱️🧮 ${getMessage('timeSaved')}`, },
   ]
   const timeSavedAveragingMethodOptions: Array<{ v: Settings['timeSavedAveragingMethod'], l : string }> = [
     { v: 'all-time', l: `♾️ ${getMessage('timeSavedAveragingMethodAllTime')}` },

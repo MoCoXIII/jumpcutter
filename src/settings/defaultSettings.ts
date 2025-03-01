@@ -41,6 +41,7 @@ const ElementPlaybackControllerStretchingSpecificDefaults = {
 } as const;
 
 export const defaultSettings: Readonly<Settings> = {
+  timeSaved: 1.0,
   volumeThreshold: ElementPlaybackControllerStretchingSpecificDefaults.volumeThreshold,
   previousVolumeThreshold:  ElementPlaybackControllerStretchingSpecificDefaults.volumeThreshold,
   silenceSpeedSpecificationMethod: 'relativeToSoundedSpeed',
@@ -257,7 +258,7 @@ export const defaultSettings: Readonly<Settings> = {
   timeSavedAveragingWindowLength: 600,
   timeSavedExponentialAveragingLatestDataWeight: 0.95,
 
-  badgeWhatSettingToDisplayByDefault: 'soundedSpeed',
+  badgeWhatSettingToDisplayByDefault: 'timeSaved',
 
   enableDesyncCorrection: browserHasAudioDesyncBug,
 

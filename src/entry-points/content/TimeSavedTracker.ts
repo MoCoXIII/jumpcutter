@@ -18,7 +18,7 @@
  * along with Jump Cutter Browser Extension.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Settings, MyStorageChanges, settingsChanges2NewValues } from "@/settings";
+import { Settings, MyStorageChanges, settingsChanges2NewValues, setSettings } from "@/settings";
 import { addPlaybackStopListener, addPlaybackResumeListener, isPlaybackActive, closestNonNormalSpeed } from './helpers';
 import type { TimeDelta } from "@/helpers";
 
@@ -310,6 +310,9 @@ export default class TimeSavedTracker {
       wouldHaveLastedIfSpeedWasSounded,
       wouldHaveLastedIfSpeedWasIntrinsic,
     ] = this._getTimeSavedData(currentSnippetDuration, this._currentElementSpeed, this._lastHandledSoundedSpeed);
+    // time calculation from 'src/entry-points/popup/App.svelte' line 390 and 395
+    const timeSaved = wouldHaveLastedIfSpeedWasSounded / (wouldHaveLastedIfSpeedWasSounded - timeSavedComparedToSoundedSpeed);
+    setSettings({ timeSaved });
     return {
       timeSavedComparedToSoundedSpeed,
       timeSavedComparedToIntrinsicSpeed,

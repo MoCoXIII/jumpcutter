@@ -310,9 +310,6 @@ export default class TimeSavedTracker {
       wouldHaveLastedIfSpeedWasSounded,
       wouldHaveLastedIfSpeedWasIntrinsic,
     ] = this._getTimeSavedData(currentSnippetDuration, this._currentElementSpeed, this._lastHandledSoundedSpeed);
-    // time calculation from 'src/entry-points/popup/App.svelte' line 390 and 395
-    const timeSaved = wouldHaveLastedIfSpeedWasSounded / (wouldHaveLastedIfSpeedWasSounded - timeSavedComparedToSoundedSpeed);
-    setSettings({ timeSaved });
     return {
       timeSavedComparedToSoundedSpeed,
       timeSavedComparedToIntrinsicSpeed,

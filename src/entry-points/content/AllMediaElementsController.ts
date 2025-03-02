@@ -661,6 +661,20 @@ export default class AllMediaElementsController {
     // `ensureAddOnConnectListener` can still have not been called. TODO refactor?
     this.elementLastActivatedAt = calledAt;
     this.broadcastStatus();
+
+    const badgeUpdateListener = () => {
+      console.log('badgeUpdateListener', this.timeSavedTracker);
+      if (!this.timeSavedTracker) return;
+      const { wouldHaveLastedIfSpeedWasSounded, timeSavedComparedToSoundedSpeed } = this.timeSavedTracker.timeSavedData;
+      // time calculation from 'src/entry-points/popup/App.svelte' line 390 and 395
+      const timeSaved = wouldHaveLastedIfSpeedWasSounded / (wouldHaveLastedIfSpeedWasSounded - timeSavedComparedToSoundedSpeed);
+      // browserOrChrome.action.setBadgeText({ text: timeSaved.toFixed(2) });
+      setSettings({ timeSaved: timeSaved });
+    }
+
+    console.log('ensureAttachToElement', el);
+    el.addEventListener('timeupdate', badgeUpdateListener);
+    this._onDetachFromActiveElementCallbacks.push(() => el.removeEventListener('timeupdate', badgeUpdateListener));
   }
 
   private ensureAttachToEventTargetElementIfEligible = async (e: Event) => {

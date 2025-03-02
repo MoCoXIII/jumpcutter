@@ -32,6 +32,7 @@ function settingToBadgeParams<T extends SupportedSettings>(
   value: Settings[T]
 ): Parameters<typeof setBadge>
 {
+  console.log('updated Badge to setting');
   switch (settingName) {
     // TODO refactor: DRY colors? Though here they're darker anyway, to account for the white text.
     // TODO refactor: Also DRY `toFixed` precision, to match the popup?
